@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: AppContainers.screenPaddingHorizontal,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -40,11 +40,11 @@ class HomeScreen extends StatelessWidget {
             // Custom Button
             Center(
               child: CustomButton(
-                label: 'Select Your Team',
-                onPressed: () {
-                  // Navigate to team selection screen
-                  Navigator.pushNamed(context, '/team-selection');
-                },
+                label: 'Primary Rounded',
+                variant: ButtonVariant.secondary,
+                style: ButtonStyleType.roundedFull,
+                isFullWidth: true,
+                onPressed: () {},
               ),
             ),
           ],
