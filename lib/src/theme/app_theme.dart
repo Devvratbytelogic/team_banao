@@ -104,14 +104,17 @@ class AppTheme {
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           foregroundColor: AppColors.primary,
+          padding: EdgeInsets.zero,
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          alignment: Alignment.centerLeft,
           textStyle: GoogleFonts.inter(
             fontWeight: FontWeight.normal,
             fontSize: 14,
           ),
-        ),
-    //           .copyWith(
-    //   overlayColor: WidgetStateProperty.all(Colors.transparent),
-    // ),
+        )
+              .copyWith(
+      overlayColor: WidgetStateProperty.all(Colors.transparent),
+    ),
       ),
 
 

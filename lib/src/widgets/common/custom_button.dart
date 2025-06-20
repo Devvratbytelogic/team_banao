@@ -54,3 +54,55 @@ class CustomButton extends StatelessWidget {
     );
   }
 }
+
+
+
+class CustomIconButton extends StatelessWidget {
+  final Widget icon;
+  final String label;
+  final VoidCallback onPressed;
+  final Color backgroundColor;
+  final Color foregroundColor;
+  final bool isFullWidth;
+  final double borderRadius;
+  final EdgeInsetsGeometry padding;
+
+  const CustomIconButton({
+    super.key,
+    required this.icon,
+    required this.label,
+    required this.onPressed,
+    this.backgroundColor = Colors.white,
+    this.foregroundColor = Colors.black,
+    this.isFullWidth = true,
+    this.borderRadius = 10,
+    this.padding = const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: isFullWidth ? double.infinity : null,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: backgroundColor,
+          foregroundColor: foregroundColor,
+          padding: padding,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(borderRadius),
+          ),
+          elevation: 2,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            icon,
+            AppSpaces.w8,
+            Text(label),
+          ],
+        ),
+      ),
+    );
+  }
+}
