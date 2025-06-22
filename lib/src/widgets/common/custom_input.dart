@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/services.dart'; // ✅ Import for inputFormatters
 import 'package:team_banao/src/core/constants.dart';
 
 class CustomInput extends StatefulWidget {
@@ -9,9 +9,11 @@ class CustomInput extends StatefulWidget {
   final TextEditingController? controller;
   final void Function(String)? onChanged;
   final bool enableToggle;
-  final Widget? icon;              // for static icon (when toggle disabled)
-  final Widget? toggleOnIcon;     // icon to show when text is visible (not obscured)
-  final Widget? toggleOffIcon;    // icon to show when text is obscured
+  final Widget? icon;
+  final Widget? toggleOnIcon;
+  final Widget? toggleOffIcon;
+  final List<TextInputFormatter>? inputFormatters; // ✅ NEW
+  final bool enabled; // ✅ NEW
 
   const CustomInput({
     Key? key,
@@ -24,6 +26,9 @@ class CustomInput extends StatefulWidget {
     this.icon,
     this.toggleOnIcon,
     this.toggleOffIcon,
+    this.inputFormatters, // ✅ NEW
+    this.enabled = true, // ✅ Default is enabled
+
   }) : super(key: key);
 
   @override
@@ -54,6 +59,8 @@ class _CustomInputState extends State<CustomInput> {
       obscureText: _obscureText,
       keyboardType: widget.keyboardType,
       onChanged: widget.onChanged,
+      inputFormatters: widget.inputFormatters, // ✅ NEW
+      enabled: widget.enabled, // ✅ Use enabled flag here
       decoration: InputDecoration(
         labelText: widget.label,
         labelStyle: theme.inputDecorationTheme.labelStyle,
@@ -62,15 +69,15 @@ class _CustomInputState extends State<CustomInput> {
         suffixIcon: widget.enableToggle
             ? IconButton(
           icon: _obscureText
-              ? (widget.toggleOffIcon ?? const Icon(Icons.visibility_off)) //color: Colors.grey
+              ? (widget.toggleOffIcon ?? const Icon(Icons.visibility_off))
               : (widget.toggleOnIcon ?? const Icon(Icons.visibility)),
           onPressed: _toggleObscure,
         )
             : widget.icon,
       ),
-      style: TextStyle(
-        fontSize: 14,          // Your desired font size
-        color: AppColors.primary, // Your desired color
+      style: const TextStyle(
+        fontSize: 14,
+        color: AppColors.primary,
         fontWeight: FontWeight.normal,
       ),
     );

@@ -8,6 +8,8 @@ class AppColors {
   static const Color white = Color(0xFFFFFFFF);
   static const Color bodyText = Color(0xFF2E3A59);
   static const Color lightGray = Color(0xFFD9D9D9);
+  static const Color transparent = Colors.transparent; // ✅ NEW
+
   // static const Color secondary = Color(0xFFF4B544);
   // static const Color batBrownLight = Color(0xFFE09C58);
   // static const Color batBrownDark = Color(0xFFA35D29);

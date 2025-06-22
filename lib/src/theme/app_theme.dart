@@ -14,8 +14,9 @@ class AppTheme {
         backgroundColor: AppColors.secondary,
         elevation: 0,
         foregroundColor: Colors.white,
+        titleSpacing: 0,
         titleTextStyle: GoogleFonts.ubuntu(
-          fontSize: 20,
+          fontSize: 16,
           fontWeight: FontWeight.w600,
           color: Colors.white,
         ),

@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:team_banao/src/routes/routes.dart';
 import 'package:team_banao/src/widgets/common/custom_button.dart';
 import 'package:team_banao/src/core/constants.dart'; // for AppColors
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
+  void logout(BuildContext context) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('is_logged_in');
+    Navigator.pushReplacementNamed(context, AppRoutes.login);
+  }
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme; // Access AppTheme text styles
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Team Banao',
-          style: textTheme.titleLarge?.copyWith(
-            color: Colors.white,
-          ),
-        ),
-      ),
       body: Padding(
         padding: AppContainers.screenPaddingHorizontal,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Heading
+
             Text(
               'Welcome to Team Banao!',
               style: textTheme.headlineLarge,
@@ -44,7 +45,7 @@ class HomeScreen extends StatelessWidget {
                 variant: ButtonVariant.secondary,
                 style: ButtonStyleType.roundedFull,
                 isFullWidth: true,
-                onPressed: () {},
+                onPressed: () => logout(context),
               ),
             ),
           ],
